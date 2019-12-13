@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <yighh-2 >
+            <template v-slot:title>
+                {{article.title}}
+            </template>
+            <template v-slot:author>
+                    {{article.author}}
+                </template>
+                <template v-slot:date>
+                        {{article.publishDate}}
+                    </template>
+                    {{article.content}}
+        </yighh-2>
+        <!--<h1>{{article.title}}</h1>
+        <h2>作者：{{article.author}}</h2>
+        <h3>{{article.publishDate}}</h3>
+        <p>
+            <img :src="article.imgSrc" style="width:200px;height:50px"/>
+            {{article.content}}
+        </p>-->
+        <!-- heart是组建的一个属性，那么必须通过props声明这个属性 -->
+        <!-- <yighh v-bind:heart="article"></yighh>
+        <yighh v-bind:heart="article2"></yighh>
+         -->
+
+         <!-- <yighh v-for="article in articleList" :key="article.title":heart="article"></yighh> -->
+    </div>
+    <script>
+        //定义yighh这个自定义组建
+        //第一个参数是自定义组建的标签名称，第二个参数是定义组建的运行规则对象
+       
+           
+            //template中定义的是组建的模板，也就是html和{{}}以及VUE指令的组合
+            //template必须要有根标签 例如<h1><h2>不合法，<div><h1><h2></div>合法 
+            
+            Vue.component('yighh-2',{
+            template:'<div>'+
+                   '<h1><slot name="title"></slot></h1>'+
+                   '<h2><slot name="author"></slot></h2>'+
+                   '<h3><slot name="date"></slot></h3>'+
+                   '<p><slot></slot></p>'+
+                '</div>'
+        });
+
+        var app=new Vue({
+            el:"#app",
+            data:{
+                
+                  article:{
+                      title:"wangyiboxiaozhan",
+                      author:"哥哥弟弟",
+                    
+                      publishDate:"2019-12-10",
+                      content:"教育风格化头发,我心花放非官方大哥第三方",
+                     
+            
+                //   } ,
+                //   article2:{
+                //       title:"Vue笔记",
+                //       author:"哥哥弟弟",
+                //       publishDate:"2019-12-10",
+                //       content:"教育风格化头发,我心花放非官方大哥第三方",
+                     
+            
+                //   } ,
+
+                  
+
+                  }       
+       }
+        
+        })
+    </script>
+    <style>
+   
+    </style>
+</body>
+</html>
